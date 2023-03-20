@@ -1,0 +1,66 @@
+DROP DATABASE yandex_music;
+CREATE DATABASE IF NOT EXISTS yandex_music;
+USE yandex_music; 
+
+drop table if exists Profile;
+create table if not exists Profile(
+id_Profile int primary key auto_increment,
+name varchar(20) not null,
+email varchar(50) not null
+);
+
+drop table if exists Subcribtion ;
+CREATE table if not exists Subcribtion(
+id_Subcribtion INT primary key auto_increment,
+email VARCHAR(50) not null,
+period date not null
+);
+
+drop table if exists Artist;
+create table if not exists Artist(
+id_Artist Int primary key auto_increment,
+name varchar(20) not null
+);
+
+drop table if exists Artist_profile;
+create table if not exists Artist_profile(
+id_Artist_profile INT primary key auto_increment,
+Artist_id int not null,
+foreign key (Artist_id) references Artist(id_Artist)
+);
+
+drop table if exists Profile_sub;
+create table if not existsProfile_sub(
+id_Profile_sub INT primary key auto_increment,
+Profile_id int not null,
+Subcribtion_id int not null,
+foreign key (Profile_id) references Profile(id_Profile),
+foreign key (Subcribtion_id) references Subcribtion(id_Subcribtion)
+);
+
+drop table if exists Favourite_artist;
+create table if not exists Favourite_artist(
+id_Favourite_artist INT primary key auto_increment,
+Profile_id int not null,
+Artist_id int not null,
+foreign key (Profile_id) references Profile(id_Profile),
+foreign key (Artist_id) references Artist(id_Artist)
+);
+
+drop table if exists Songs;
+create table if not exists Songs(
+id_Songs INT primary key auto_increment,
+Artist_id int not null,
+title varchar(20) not null,
+pleylist varchar(30) not null,
+foreign key (Artist_id) references Artist(id_Artist)
+);
+
+drop table if exists My_music;
+create table if not exists My_music(
+id_My_music INT primary key auto_increment,
+Profile_id int not null,
+Songs_id int not null,
+foreign key (Profile_id) references Profile(id_Profile),
+foreign key (Songs_id) references Songs(id_Songs)
+);
