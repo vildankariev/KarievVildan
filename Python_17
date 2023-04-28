@@ -1,0 +1,132 @@
+Задание №1. 
+class cat: 
+     
+ def __init__(self, name, age, color): 
+     self.name = name 
+     self.age = age 
+     self.color = color 
+ def info(self): 
+     print(f'name:{self.name}, age:{self.age}, color:{self.color}') 
+     
+ def miyyyy(self): 
+     print('miyyyy') 
+     
+ def myyyyr(self): 
+     print('myyyyr') 
+     
+ def I_want_to_eat(self): 
+     print('I_want_to_eat') 
+     
+cat = cat(input(), input(), input()) 
+cat.info() 
+cat.miyyyy() 
+cat.myyyyr() 
+cat.I_want_to_eat() 
+ 
+Задание №2. 
+def __init__(self, name, price, weight): 
+     self.name = name 
+     self.age = price 
+     self.cost = price * weight 
+     self.weight = weight 
+     
+ def calc(self):  
+     print(self.cost) 
+     
+apple = good(input(), float(input()), float(input())) 
+pear = good(input(), float(input()), float(input())) 
+apple.calc() 
+pear.calc() 
+ 
+Задание №3. 
+class car: 
+     
+    def __init__(self, color, mark, body, transmission_type): 
+        self.color = color 
+        self.mark = mark 
+        self.body = body 
+        self.speed = 0 
+        self.transmission_type = transmission_type 
+     
+    def start(self): 
+        print('speed = 10 km/h') 
+        self.speed = 10 
+ 
+    def stop(self): 
+        print('speed = 0 km/h') 
+        self.speed = 0 
+     
+    def turn_right(self): 
+        print('машина повернула направо') 
+     
+    def turn_left(self): 
+        print('машина повернула налево') 
+     
+    def beep(self): 
+        print('BEEEEEEP') 
+      
+    def speed_up(self, i=1): 
+        print(f'speed = {self.speed + i} km/h') 
+        self.speed += 2 * i 
+         
+    def speed_down(self, i=1): 
+        if self.speed == 0: 
+            print('speed = 0 km/h') 
+        else: 
+            print(f'speed = {self.speed - i} km/h') 
+            self.speed -= i 
+ 
+lada = car('blue', 'hat', 'sedan', 'auto') 
+ 
+bmw = car( 'black', 'mercedes', 'sedan', 'auto') 
+ 
+bmw.start() 
+bmw.speed_up() 
+bmw.speed_down() 
+bmw.turn_left() 
+bmw.speed_up() 
+bmw.beep() 
+bmw.turn_right() 
+bmw.stop() 
+ 
+lada.start() 
+lada.speed_up() 
+lada.speed_down() 
+lada.turn_left() 
+lada.speed_up() 
+lada.beep() 
+lada.turn_right() 
+lada.stop() 
+ 
+Задание №4. 
+class car: 
+     
+    def __init__(self, color, mark, body, transmission_type): 
+        self.max_speed_car = 80 
+        self.max_speed_truck = 60 
+        self.color = color 
+        self.mark = mark 
+        self.body = body 
+        self.speed = 0 
+        self.transmission_type = transmission_type 
+     
+    def start(self): 
+        print('speed = 10 km/h') 
+        self.speed = 10 
+ 
+    def stop(self): 
+        print('speed = 0 km/h') 
+        self.speed = 0 
+     
+    def turn_right(self): 
+        print('машина повернула направо') 
+     
+    def turn_left(self): 
+        print('машина повернула налево') 
+Footer 
+© 2023 GitHub, Inc. 
+Footer navigation 
+Terms 
+Privacy 
+Security 
+Status
