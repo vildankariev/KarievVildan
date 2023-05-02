@@ -1,0 +1,109 @@
+1)
+class Animal: 
+   def __init__(self, color = 'black', name = 'соня', age=3): 
+       self.color = color 
+       self.name = name 
+       self.age = age 
+   def say(self): 
+       print('звук') 
+class Cat(Animal): 
+   def say(self): 
+       print('Meow!')  
+class Dog(Animal):  
+   def say(self): 
+       print('Woof!') 
+cat = Cat() 
+cat.say()  
+dog = Dog() 
+dog.say() 
+
+2)class Father(): 
+   def __init__(self, surname, name): 
+       self.surname = surname 
+       self.name = name 
+class Child(Father): 
+   def __init__(self,surname, name, patronim): 
+       super().__init__(surname, name) 
+       self.patronim = patronim 
+   def fio(self): 
+       self.patronim = self.name + 'ович' 
+       print(f'мое фио {self.surname} {self.name} {self.patronim}') 
+elmart = Child('Кариев', 'Вильдан', 'Эльмартович') 
+elmart.fio() 
+
+3.a)class Stationery: 
+   def __init__(self,title): 
+       self.title = title 
+   def draw(self): 
+       print("Запуск отрисовки.") 
+   def set_color(self, color='yellow'): 
+       self.color = color 
+class Pen(Stationery): 
+   def __init__(self, color = 'blue', title = "ручка"): 
+       super().__init__(title) 
+       self.color = color 
+   def draw(self): 
+       print(f"{self.title} пишет {self.color}") 
+class Pencil(Stationery): 
+   def __init__(self, color = 'blue', title = 'карандаш'): 
+       super().__init__(title) 
+       self.color = color 
+   def draw(self): 
+       print(f"{self.title} чертит {self.color}") 
+class Handle(Stationery): 
+   def __init__(self, color = 'blue', title="маркер"): 
+       super().__init__(title) 
+       self.color = color 
+   def draw(self): 
+       print(f"{self.title} рисует {self.color}") 
+pen = Pen() 
+pen.draw() 
+pencil = Pencil() 
+pencil.draw() 
+handle = Handle() 
+handle.draw() 
+
+3.б)class Stationery:
+    def __init__(self, title):
+        self.title = title
+    def draw(self):
+        return f'Запуск отрисовки'
+class Pen(Stationery):
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+class Pencil(Stationery):
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+class Handle(Stationery):
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+pen = Pen('ручкой')
+print(pen.draw())
+pencil = Pencil('карандашем')
+print(pencil.draw())
+handle = Handle('маркером')
+print(handle.draw())
+
+4)class User(): 
+   def __init__(self, login, password): 
+       self.login = login 
+       self.password = password 
+   def view(self): 
+       print("Я - User. Могу просматривать содержимое") 
+class Moderator(User): 
+   def __init__(self, login, password, group_id): 
+       super().__init__(login,password) 
+       self.group_id = group_id 
+   def view(self): 
+       print("Я - Moderator. Могу просматривать содержимое") 
+   def redact(self): 
+       print("Я - Moderator. Могу редактировать
+содержимое") 
+
+5)def sey_time(self): 
+       from time import time, localtime 
+       rez = localtime(time()) 
+       print(f'{rez.tm_hour}:{rez.tm_min}:{rez.tm_sec}') 
+time = Clock() 
+time.sey_time() 
+
