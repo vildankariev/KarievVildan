@@ -1,0 +1,63 @@
+1)use vk;
+SELECT filename 
+FROM media m 
+WHERE filename  LIKE '%.avi'
+UNION 
+SELECT filename 
+FROM media m 
+WHERE filename LIKE '%.mp4';
+
+2)use vk;
+	SELECT u.firstname, u.lastname 
+FROM users u
+join messages m
+WHERE m.from_user_id = u.id AND m.to_user_id = 1 
+GROUP BY u.firstname, u.lastname
+ORDER BY COUNT(from_user_id) DESC
+LIMIT 1;
+
+3)use vk;
+SELECT COUNT(*) 'likes count'
+FROM likes l 
+JOIN
+profiles p 
+WHERE p.user_id = l.user_id AND TIMESTAMPDIFF(YEAR, p.birthday, NOW()) < 11;
+
+4)use vk;
+SELECT CASE (gender)
+        WHEN 'm' THEN 'мужчин'
+        WHEN 'f' THEN 'женщин'
+    	END AS 'Кого больше', COUNT(*) as 'лайков'
+FROM profiles p 
+join likes l 
+WHERE l.user_id = p.user_id
+GROUP BY gender 
+LIMIT 1
+
+5)use vk;
+SELECT u.firstname, u.lastname, COUNT(*) AS total_communities
+  FROM users u
+    JOIN users_communities u_c ON u.id = u_c.user_id
+  GROUP BY u.id
+  ORDER BY total_communities DESC
+  
+  6)use vk;
+SELECT 
+	COUNT(*) AS cnt,
+	c.name
+FROM users_communities u_c 
+	JOIN  communities c ON c.id=u_c.community_id
+GROUP BY c.id  
+ORDER BY cnt DESC; 
+
+7)use vk;
+
+select
+	u.id , concat(u.firstname, ' ', u.lastname),
+	count(l.id) as likes_count
+FROM users u
+    JOIN media m ON u.id = m.user_id
+    JOIN likes l ON m.id = l.media_id
+GROUP BY u.id
+ORDER BY likes_count DESC
+LIMIT 3;
