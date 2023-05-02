@@ -1,0 +1,72 @@
+1)class Battary:
+	def __init__(self, capacity = [], max_charge = 5):
+    	self.capacity = capacity
+    	self.max_charge = max_charge
+	def charge(self):
+    	if len(self.capacity) >= (self.max_charge):
+        	return
+    	self.capacity.append(')')
+	def discharge(self):
+        	self.capacity.pop()  
+	def __str__(self):
+    	return f'[{"".join(self.capacity)}]'
+d = Battary()
+d.charge()
+d.charge()
+d.charge()
+d.charge()
+d.charge()
+d.discharge()
+print(d)
+
+2)class Queue:
+    def __init__(self, inside = ['John', 'Bob', 'Alex', 'Anna']):
+        self.inside = inside
+    def __str__(self):
+        return f'{"=>".join(self.inside)}'
+    def add(self, other):
+        self.inside.append(other)
+    def take_out(self, other):
+        self.inside.pop(0)
+    def __sub__(self, value):
+        self.take_out(value)
+    def __add__(self, qwerty):
+        self.add(qwerty)
+    def __isub__(self, value):
+        self.take_out(value)
+    def __iadd__(self, qwerty):
+        self.add(qwerty)
+q = Queue()
+print(q)
+q.add('Tom')
+print(q)
+q.take_out('John')
+print(q)
+q + 'Eric'
+print(q)
+q - 'Bob'
+print(q)
+
+3)class Matrix():
+	def __init__(self, matr):
+    	self.matr = matr
+	def __str__(self):
+    	return '\n'.join('\t'.join(map(str, q))for q in self.matr)
+	def __add__(self, other):
+    	i = 0
+    	res = []
+    	for i in range(len(self.matr)):
+        	lst = []
+        	res.append(lst)
+        	for j in range(len(self.matr[i])):
+            	lst.append(self.matr[i][j] + other.matr[i][j])
+        	i += 1
+    	r = Matrix(res)
+    	return r 	 
+m = Matrix([[1,2,3],[4,5,6]])
+print(m)
+m2 = Matrix([[6,5,4],[3,2,1]])
+print(m2)
+m3 = m + m2
+print(m3)
+
