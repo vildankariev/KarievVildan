@@ -1,0 +1,14 @@
+DROP USER 'superuser'@'localhost';
+CREATE USER 'superuser'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON *.* TO 'superuser'@'localhost';
+drop user 'admin'@'localhost';
+create user 'admin'@'localhost' identified by '4321';
+GRANT SELECT, INSERT, DELETE, UPDATE ON *.* TO 'admin'@'localhost';
+
+create user 'username'@'localhost' identified by '123';
+grant select on vk.users to 'username'@'localhost';
+
+rename user 'username'@'localhost' to 'user'@'localhost';
+grant select, insert on vk.profiles to 'user'@'localhost';
+
+drop user 'admin'@'localhost';
