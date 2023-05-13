@@ -1,0 +1,54 @@
+### ПРОСТОЙ ЗАПРОС
+SELECT u.name AS 'Name', u.registered AS 'Registered'
+FROM user u
+ORDER BY u.registered DESC;
+
+
+### ЗАПРОС С АГРЕГАЦИЕЙ
+SELECT count(t.id) AS 'Songs'
+FROM songs s
+WHERE s.artist_id = 1;
+
+
+### СЛОЖНЫЕ ЗАПРОСЫ С ОБЪЕДИНЕНИЕМ 2-3 ТАБЛИЦ С ПОМОЩЬЮ JOIN
+SELECT
+  a.name AS 'Artist',
+  s.title AS 'Songs'
+FROM user_songs us 
+JOIN songs s ON s.id = us.songs_id
+JOIN artist a ON a.id = u.artist_id 
+WHERE us.account_id = 3
+ORDER BY a.name ASC;
+
+
+SELECT 
+  a.name AS 'Artist',
+  s.title AS 'Songs',
+  g.name AS 'Genre'
+FROM songs s
+JOIN artist a ON a.id = s.artist_id 
+JOIN genre g ON g.id = s.genre_id 
+WHERE s.genre_id = 1 OR s.genre_id = 5
+ORDER BY g.name ASC;
+
+
+### СЛОЖНЫЕ ЗАПРОСЫ С ОБЪЕДИНЕНИЯМИ 2-3 ТАБЛИЦ ПОДЗАПРОСАМИ
+SELECT a.title AS 'Title'
+FROM album a 
+WHERE a.id IN 
+  (SELECT s.album_id 
+  FROM songs s 
+  WHERE s.genre_id = 1)
+GROUP BY Title
+ORDER BY Title;
+
+SELECT u.name AS 'Name'
+FROM user u
+WHERE u.account_id IN 
+  (SELECT ut.account_id
+  FROM user_track ut
+  WHERE ut.track_id IN 
+    (SELECT t.id
+    FROM track t
+    WHERE t.artist_id = 6))
+GROUP BY Name;
