@@ -1,0 +1,54 @@
+use vk; 
+#Создайте хранимую процедуру, которая создает временную таблицу для подсчета из каких городов пользователи в бд. 
+drop procedure if exists countht; 
+delimiter // 
+create procedure countht() 
+begin 
+    drop table temp; 
+    create temporary table temp 
+    select hometown, count(*) 
+    from profiles 
+    group by hometown; 
+ 
+end // 
+delimiter ; 
+call countht(); 
+ 
+#Создайте триггер, который при удалении пользователя удаляет также его файлы 
+drop trigger if exists user_delete; 
+delimiter // 
+create trigger user_delete after delete on users 
+for each row 
+begin delete from profiles p where p.user_Id = old.id; 
+end // 
+delimiter ; 
+ 
+#Создайте триггер, который при добавлении пользователя проверяет его дату рождения и устанавливает текущую дату, если дата из "будущего" 
+drop trigger if exists bdupdate; 
+delimiter // 
+create trigger bdupdate after insert on profiles 
+for each row 
+if new.birthday > curdate() then 
+    insert into profiles(birthday) values (curdate()); 
+end if // 
+delimiter ; 
+ 
+# Создайте триггер, который при обновлении данных в таблице media будет ставить текущую дату и время в колонку updated_at 
+drop trigger if exists md; 
+delimiter // 
+create trigger md after update media 
+for each row 
+begin 
+    insert into media(updated_at) values (curdate(), curtime()); 
+end 
+delimiter ; 
+ 
+#Создайте триггер, который проверяет на правильность ввод данных о пользователе при вставке нового пользователя ( fristname и lastname, email не должны быть пустыми, phone начинается с 7), и выводит на экран ошибку "Invalid user data" 
+drop trigger if exists checkins; 
+delimiter // 
+create trigger checkins after update on users 
+for each row 
+if new.firstname is null or new.lastname is null or new.email is null or new.phone not like '7%' then 
+    set @message_text = 'Invalid user data'; 
+end if // 
+delimiter ;
